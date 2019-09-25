@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Symbol</th>
+      <th scope="col">Shares</th>
+      <th scope="col">Price</th>
+      <th scope="col">Total</th>
+      <th scope="col">Debit or Credit</th>
+      <th scope="col">Transacted</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for entry in output %}
+    <tr>
+      <th scope="row">{{ entry['symbol'] }}</th>
+      <td>{{ entry['shares'] }}</td>
+      <td>${{ '{0:0.2f}'.format(entry['price']) }}</td>
+      <td>${{ '{0:0.2f}'.format(entry['price']*entry['shares']) }}</td>
+      <td>{{ entry['debit'] }}</td>
+      <td>{{ entry['date'] }}</td>
+    </tr>
+      {% endfor %}
+
+  </tbody>
+</table>
+
+{% endblock %}

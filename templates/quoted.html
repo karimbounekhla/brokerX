@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+    <div align='center'>The latest stock price for {{ name }} is ${{ '{0:0.2f}'.format(price) }}</div>
+
+{% endblock %}

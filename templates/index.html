@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Symbol</th>
+      <th scope="col">Name</th>
+      <th scope="col">Shares</th>
+      <th scope="col">Price</th>
+      <th scope="col"><b>TOTAL</b></th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for entry in entry %}
+    <tr>
+      <th scope="row">{{ entry['symbol'] }}</th>
+      <td>{{ entry['name'] }}</td>
+      <td>{{ entry['shares'] }}</td>
+      <td>${{ entry['price'] }}</td>
+      <td>${{ '{0:0.2f}'.format(entry['shares']*entry['price']) }}</td>
+    </tr>
+      {% endfor %}
+    <tr>
+      <th scope="row">CASH <a href="/cash">(Add)</a></th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>${{ '{0:0.2f}'.format(cash[0]['cash']) }}</td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><b>${{ '{0:0.2f}'.format(sum+cash[0]['cash']) }}</b></td>
+    </tr>
+
+  </tbody>
+</table>
+
+{% endblock %}
