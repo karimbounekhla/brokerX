@@ -22,7 +22,7 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-# Custom filter
+# Custom filter for USD
 app.jinja_env.filters["usd"] = usd
 
 # Configure session to use filesystem (instead of signed cookies)
@@ -38,7 +38,7 @@ db = SQL("sqlite:///finance.db")
 @app.route("/")
 @login_required
 def index():
-    # Display stocks owndd by user
+    # Display stocks owned by user
     stocks = db.execute("SELECT symbol, name, shares FROM users JOIN inventory WHERE users.id=inventory.id AND users.id=:id", id=session['user_id'])
     cash = db.execute("SELECT cash FROM users WHERE id=:id", id=session['user_id'])
     sum = 0
@@ -49,7 +49,7 @@ def index():
         sum = sum + i['shares']*price
     return render_template("index.html", entry=stocks, cash=cash, sum=sum)
 
-# Buy page
+# Buy stock page
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
@@ -108,6 +108,7 @@ def cash():
         return render_template('cash.html')
 
 
+# Checking if user exists
 @app.route("/check", methods=["GET"])
 def check():
     q = request.args.get("username")
@@ -119,6 +120,7 @@ def check():
         return jsonify(False)
 
 
+# Display transaction history
 @app.route("/history")
 @login_required
 def history():
@@ -173,7 +175,7 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
-
+# Use lookup() helper function to query stock using API
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():

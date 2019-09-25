@@ -1,5 +1,6 @@
-import requests
-import urllib.parse
+import csv
+import os
+import urllib.request
 
 from flask import redirect, render_template, request, session
 from functools import wraps
@@ -24,7 +25,7 @@ def login_required(f):
     """
     Decorate routes to require login.
 
-    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/
+    http://flask.pocoo.org/docs/0.12/patterns/viewdecorators/
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -50,8 +51,8 @@ def lookup(symbol):
     try:
 
         # GET CSV
-        url = f"https://www.alphavantage.co/query?apikey=MBGOGUR2UFPP987Y&datatype=csv&function" \
-              f"=TIME_SERIES_INTRADAY&interval=1min&symbol={symbol}"
+        url = f"https://www.alphavantage.co/query?apikey=AUTH_KEY&datatype=csv&function" \
+              f"=TIME_SERIES_INTRADAY&interval=1min&symbol={symbol} "
         webpage = urllib.request.urlopen(url)
 
         # Parse CSV
