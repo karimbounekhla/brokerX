@@ -89,7 +89,7 @@ def buy():
     else:
         return render_template("buy.html")
 
-
+# Adding cash
 @app.route("/cash", methods=["GET", "POST"])
 @login_required
 def cash():
