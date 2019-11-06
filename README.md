@@ -1,5 +1,5 @@
 # BrokerX
-Simple Stock Trading Game in Python/Flask, using SQL for the DB and HTML/CSS (Bootstrap) for the layout. 
+Stock Trading Game in Python/Flask, using SQL for the DB and HTML/CSS (Bootstrap) for the layout. 
 Featuring user registration/login and real time stock price query using API.
 
 ## Tools 
