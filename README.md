@@ -59,12 +59,10 @@ flask run
 
 ## Task List
 
-- [ ] Leaderboard showing all players and their stock performance
 - [ ] Realized gains/losses, and addition to volume-dependent service fee per transaction
-- [ ] 'Forgot Password'
 - [ ] Graphical representation of performance vs major stock indices (S&P 500, DOW, etc.)
 
 ## License / Copyright
 
+* Completed as part of Harvard CS50 Curriculum
 * This project is licensed under the MIT License.
-* Harvard CS50 
